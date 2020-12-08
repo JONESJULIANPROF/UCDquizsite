@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-
+from UCDquizApp import views
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^$', views.home_page, name='home'),
+    url(r'^home.html$', views.home_page, name='home'),
+    url(r'^page1.html$', views.page1_page, name='page1'),
+    
 ]
