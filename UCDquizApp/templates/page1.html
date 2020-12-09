@@ -11,7 +11,35 @@
     <title>Question 1</title>
   </head>
   <body>
-    <h1></h1>
+     
+    <h1 id="banner"></h1>
+    <form>
+        <div id="form-group">
+            <label for="inputBox">There is a strange glass on the table, do you take it?</label>
+            <input type="text" id="inputBox">
+            <button type="submit" id="submit">Submit!</button>
+        </div>
+    </form>
+    <script>
+        function getCookie(cname) {
+         var name = cname + "=";
+         var ca = document.cookie.split(';');
+         for(var i = 0; i < ca.length; i++) {
+           var c = ca[i];
+           while (c.charAt(0) == ' ') {
+             c = c.substring(1);
+           }
+           if (c.indexOf(name) == 0) {
+             return c.substring(name.length, c.length);
+           }
+         }
+         return "";
+       }
+
+       var temp = getCookie("playerName");
+       var text = "Welcome to question 1, " + temp;
+       document.getElementById('banner').innerHTML = text;
+    </script> 
 
     <!-- Optional JavaScript; choose one of the two! -->
 
