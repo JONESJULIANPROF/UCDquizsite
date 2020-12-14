@@ -62,6 +62,47 @@ class ProgramTest(TestCase):
         response = page1_page(request)
         html = response.content.decode('utf8')
         self.assertIn('<button type="submit" id="submit">Submit!</button>', html, 'it broke')
+    def testHomePageNavContext1(self):
+        request = HttpRequest()
+        response = home_page(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<div class="topnav">', html, 'it broke')
+    
+    def testHomePageNavContext2(self):
+        request = HttpRequest()
+        response = home_page(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<a href="home.html" id="homeAnchor">Home</a>', html, 'it broke')
+
+    def testHomePageNavContext3(self):
+        request = HttpRequest()
+        response = home_page(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<a href="page1.html" id="page1Anchor">Question 1</a>', html, 'it broke')
+
+    def testPage1NavContext1(self):
+        request = HttpRequest()
+        response = home_page(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<div class="topnav">', html, 'it broke')
+    
+    def testPage1NavContext2(self):
+        request = HttpRequest()
+        response = home_page(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<a href="home.html" id="homeAnchor">Home</a>', html, 'it broke')
+
+    def testPage1NavContext3(self):
+        request = HttpRequest()
+        response = home_page(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<a href="page1.html" id="page1Anchor">Question 1</a>', html, 'it broke')
+    
+    
+
+    
+
+    
     
     
 
