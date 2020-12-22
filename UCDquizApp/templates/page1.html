@@ -1,3 +1,4 @@
+{%load static%}
 <!doctype html>
 <html lang="en">
   <head>
@@ -7,24 +8,59 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="{%static 'Darkly.css'%}">
     <title>Question 1</title>
   </head>
   <body>
-    <div class="topnav">
-      <a href="home.html" id="homeAnchor">Home</a>
-      <a href="page1.html" id="page1Anchor">Question 1</a>
-    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      
+      <a class="nav-link" href="home.html" id="homeAnchor">Home</a>
+      <a class="nav-link" href="page1.html" id="page1Anchor">Question 1</a>
+    
+      
+        
+     
+    
+    
+  </nav>
      
     <h1 id="banner"></h1>
     <form>
         <div id="form-group">
             <label for="inputBox">There is a strange glass on the table, do you take it?</label>
             <input type="text" id="inputBox">
-            <button type="submit" id="submit">Submit!</button>
+            <button type="submit" class="btn btn-primary" id="submit" onclick="storeChoice()">Store your choice!</button>
+            <!--<button type="submit" class="btn btn-primary" id="submit2" onclick="makeDecision()">Make the Decison!</button>-->
         </div>
+        <img id="outputImg" alt="Image" title="Image">
+        
+
+      
     </form>
+    <h2 id="outputText"></h2>
     <script>
+    var input = getCookie("page1Choice");
+
+       
+  if (input.toUpperCase() == "YES"){
+    document.getElementById('outputImg').src = "{%static 'Skull.png' %}";
+    document.getElementById('outputText').innerHTML = "YOU DIED";
+
+
+  } else if (input.toUpperCase() == "NO"){
+    document.getElementById('outputImg').src = "{%static 'CheckMark.png' %}";
+    document.getElementById('outputText').innerHTML = "YOU LEAVE THE GLASS ALONE";
+  }
+
+      function storeChoice(){
+          var playerChoice = document.getElementById('inputBox').value;
+          document.cookie = "page1Choice=" + playerChoice;
+         
+
+
+        }
+
+
         function getCookie(cname) {
          var name = cname + "=";
          var ca = document.cookie.split(';');
@@ -44,9 +80,36 @@
        var text = "Welcome to question 1, " + temp;
        document.getElementById('banner').innerHTML = text;
     </script>
+    <script>
+      //alert("THE SCRIPT WORKS");
+      function makeDecision(){
+
+        var input = getCookie("page1Choice");
+
+       
+        if (input.toUpperCase() == "YES"){
+          document.getElementById('outputImg').src = "{%static 'Skull.png' %}";
+          document.getElementById('outputText').style.color = 'red'.innerHTML = "YOU DIED";
+          //document.getElementById('outputText').innerHTML = "YOU DIED";
+
+
+        } else if (input.toUpperCase() == "NO"){
+          document.getElementById('outputImg').src = "{%static 'CheckMark.png' %}";
+          document.getElementById('outputText').style.color = 'green'.innerHTML = "YOU LEAVE THE GLASS ALONE";
+
+          //document.getElementById('outputText').innerHTML = "YOU LEAVE THE GLASS ALONE";
+
+        } else{
+          alert("INVALID INPUT: \n Must be Yes or No");
+        }
+      }
+    </script>
     
-    <footer id="pageFooter">
-      <p id="footerText">Page By Julian Jones</p>
+    <footer class="footer" id="pageFooter">
+      <div class="container">
+        <p class="text-muted" id="footerText">Page By Julian Jones</p>
+      </div>
+      
     </footer>
 
     <!-- Optional JavaScript; choose one of the two! -->

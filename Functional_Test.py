@@ -1,4 +1,6 @@
-from selenium import webdriver
+from selenium import webdriver 
+
+import requests
 
 import unittest
 
@@ -28,21 +30,37 @@ class FunctionalTest(unittest.TestCase):
         self.assertIn('Home', self.browser.title, 'Wrong title')
     
     def testPage1NavBar(self):
-        self.browser.get('http://localhost:8000')
+        self.browser.get('http://localhost:8000/page1.html')
         self.browser.find_element_by_id("page1Anchor").click()
         self.assertIn('Question 1', self.browser.title, 'Wrong title')
 
-    '''def testHomeFooter(self):
-        self.browser.get('http://localhost:8080')
+    def testHomeFooter(self):
+        self.browser.get('http://localhost:8000')
         footer = self.browser.find_element_by_id("footerText")
-        self.assertIn('Page By Julian Jones', footer, 'Text not found')
+        self.assertIn('Page By Julian Jones', footer.text, 'Text not found')
 
     def testPage1Footer(self):
-        self.browser.get('http://localhost:8080/page1.html')
+        self.browser.get('http://localhost:8000/page1.html')
         footer = self.browser.find_element_by_id("footerText")
-        self.assertIn('Page By Julian Jones', footer, 'Text not found')'''
+        self.assertIn('Page By Julian Jones', footer.text, 'Text not found')
 
+    def testCssLoads(self):
+        resp = requests.head('http://localhost:8000/static/Darkly.css')
+        self.assertEqual(200, resp.status_code, 'css not found')
 
+    def testImage1(self):
+        resp = requests.head('http://localhost:8000/static/Wave.png')
+        self.assertEqual(200, resp.status_code, 'img not found')
+    
+    def testImage2(self):
+        resp = requests.head('http://localhost:8000/static/Skull.png')
+        self.assertEqual(200, resp.status_code, 'img not found')
+
+    def testImage3(self):
+        resp = requests.head('http://localhost:8000/static/CheckMark.png')
+        self.assertEqual(200, resp.status_code, 'img not found')
+
+    
 
 if __name__ == '__main__':
     unittest.main()

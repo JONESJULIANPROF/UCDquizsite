@@ -10,7 +10,7 @@ class ProgramTest(TestCase):
         found = resolve('/')
         self.assertEqual(found.func, home_page, "Home is bad")
     
-    def testHomePage(self):
+    def testPage1Page(self):
         found = resolve('/page1.html')
         self.assertEqual(found.func, page1_page, "page1 is bad")
 
@@ -61,42 +61,72 @@ class ProgramTest(TestCase):
         request = HttpRequest()
         response = page1_page(request)
         html = response.content.decode('utf8')
-        self.assertIn('<button type="submit" id="submit">Submit!</button>', html, 'it broke')
+        self.assertIn('<button type="submit" class="btn btn-primary" id="submit" onclick="storeChoice()">Store your choice!</button>', html, 'it broke')
     def testHomePageNavContext1(self):
         request = HttpRequest()
         response = home_page(request)
         html = response.content.decode('utf8')
-        self.assertIn('<div class="topnav">', html, 'it broke')
+        self.assertIn('<nav class="navbar navbar-expand-lg navbar-dark bg-dark">', html, 'it broke')
     
     def testHomePageNavContext2(self):
         request = HttpRequest()
         response = home_page(request)
         html = response.content.decode('utf8')
-        self.assertIn('<a href="home.html" id="homeAnchor">Home</a>', html, 'it broke')
+        self.assertIn('<a class="nav-link" href="home.html" id="homeAnchor">Home</a>', html, 'it broke')
 
     def testHomePageNavContext3(self):
         request = HttpRequest()
         response = home_page(request)
         html = response.content.decode('utf8')
-        self.assertIn('<a href="page1.html" id="page1Anchor">Question 1</a>', html, 'it broke')
+        self.assertIn('<a class="nav-link" href="page1.html" id="page1Anchor">Question 1</a>', html, 'it broke')
 
     def testPage1NavContext1(self):
         request = HttpRequest()
-        response = home_page(request)
+        response = page1_page(request)
         html = response.content.decode('utf8')
-        self.assertIn('<div class="topnav">', html, 'it broke')
+        self.assertIn('<nav class="navbar navbar-expand-lg navbar-dark bg-dark">', html, 'it broke')
     
     def testPage1NavContext2(self):
         request = HttpRequest()
-        response = home_page(request)
+        response = page1_page(request)
         html = response.content.decode('utf8')
-        self.assertIn('<a href="home.html" id="homeAnchor">Home</a>', html, 'it broke')
+        self.assertIn('<a class="nav-link" href="home.html" id="homeAnchor">Home</a>', html, 'it broke')
 
     def testPage1NavContext3(self):
         request = HttpRequest()
-        response = home_page(request)
+        response = page1_page(request)
         html = response.content.decode('utf8')
-        self.assertIn('<a href="page1.html" id="page1Anchor">Question 1</a>', html, 'it broke')
+        self.assertIn('<a class="nav-link" href="page1.html" id="page1Anchor">Question 1</a>', html, 'it broke')
+    def testPage1Img(self):
+        request = HttpRequest()
+        response = page1_page(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<img id="outputImg" alt="Image" title="Image">', html, 'it broke')
+    def testPage1Output(self):
+        request = HttpRequest()
+        response = page1_page(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<h2 id="outputText"></h2>', html, 'it broke')
+    def testPage1Label(self):
+        request = HttpRequest()
+        response = page1_page(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<label for="inputBox">There is a strange glass on the table, do you take it?</label>', html, 'it broke')
+    def testPage1Input(self):
+        request = HttpRequest()
+        response = page1_page(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<input type="text" id="inputBox">', html, 'it broke')
+    
+    def testPage1Input(self):
+        request = HttpRequest()
+        response = page1_page(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<button type="submit" class="btn btn-primary" id="submit" onclick="storeChoice()">Store your choice!</button>', html, 'it broke')
+    
+    
+
+
     
     
 
