@@ -9,3 +9,7 @@ def home_page(request):
 
 def page1_page(request):
     return render(request, 'page1.html')
+
+
+def page2_page(request):
+    return render(request, 'page2.html')

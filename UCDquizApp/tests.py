@@ -2,6 +2,9 @@ from django.test import TestCase
 from django.urls import resolve
 from UCDquizApp.views import home_page
 from UCDquizApp.views import page1_page
+from UCDquizApp.views import page2_page
+
+
 from django.http import HttpRequest
 
 
@@ -79,6 +82,12 @@ class ProgramTest(TestCase):
         response = home_page(request)
         html = response.content.decode('utf8')
         self.assertIn('<a class="nav-link" href="page1.html" id="page1Anchor">Question 1</a>', html, 'it broke')
+    
+    def testHomePageNavContext4(self):
+        request = HttpRequest()
+        response = home_page(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<a class="nav-link" href="page2.html" id="page2Anchor">Question 2</a>', html, 'it broke')
 
     def testPage1NavContext1(self):
         request = HttpRequest()
@@ -97,6 +106,12 @@ class ProgramTest(TestCase):
         response = page1_page(request)
         html = response.content.decode('utf8')
         self.assertIn('<a class="nav-link" href="page1.html" id="page1Anchor">Question 1</a>', html, 'it broke')
+
+    def testPage1NavContext4(self):
+        request = HttpRequest()
+        response = page1_page(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<a class="nav-link" href="page2.html" id="page2Anchor">Question 2</a>', html, 'it broke')
     def testPage1Img(self):
         request = HttpRequest()
         response = page1_page(request)
@@ -123,6 +138,83 @@ class ProgramTest(TestCase):
         response = page1_page(request)
         html = response.content.decode('utf8')
         self.assertIn('<button type="submit" class="btn btn-primary" id="submit" onclick="storeChoice()">Store your choice!</button>', html, 'it broke')
+
+    def testPage1Input(self):
+        request = HttpRequest()
+        response = page1_page(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<button type="submit" class="btn btn-primary" id="submit" onclick="storeChoice()">Store your choice!</button>', html, 'it broke')
+
+    
+    def testPage2NavContext1(self):
+        request = HttpRequest()
+        response = page2_page(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<nav class="navbar navbar-expand-lg navbar-dark bg-dark">', html, 'it broke')
+    
+    def testPage2NavContext2(self):
+        request = HttpRequest()
+        response = page2_page(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<a class="nav-link" href="home.html" id="homeAnchor">Home</a>', html, 'it broke')
+
+    def testPage2NavContext3(self):
+        request = HttpRequest()
+        response = page2_page(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<a class="nav-link" href="page1.html" id="page1Anchor">Question 1</a>', html, 'it broke')
+    
+    def testPage2NavContext4(self):
+        request = HttpRequest()
+        response = page2_page(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<a class="nav-link" href="page2.html" id="page2Anchor">Question 2</a>', html, 'it broke')
+
+    def testPage2H1(self):
+        request = HttpRequest()
+        response = page2_page(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<h1 id="banner"></h1>', html, 'it broke')
+
+    
+    def testPage2Label(self):
+        request = HttpRequest()
+        response = page2_page(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<label for="inputBox">You escape the room, and get the opportunity to kill an unsuspecting guard. Do you?</label>', html, 'it broke')
+
+    def testPage2Input(self):
+        request = HttpRequest()
+        response = page2_page(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<input type="text" id="inputBox">', html, 'it broke')
+    
+    def testPage2Button(self):
+        request = HttpRequest()
+        response = page2_page(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<button type="submit" class="btn btn-primary" id="submit" onclick="storeChoice()">Store your choice!</button>', html, 'it broke')
+
+    def testPage2Img(self):
+        request = HttpRequest()
+        response = page2_page(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<img id="outputImg" alt="Image" title="Image">', html, 'it broke')
+
+    def testPage2Footer(self):
+        request = HttpRequest()
+        response = page2_page(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<p class="text-muted" id="footerText">Page By Julian Jones</p>', html, 'it broke')
+
+
+
+
+
+    
+
+
+    
     
     
 

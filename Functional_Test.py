@@ -33,6 +33,11 @@ class FunctionalTest(unittest.TestCase):
         self.browser.get('http://localhost:8000/page1.html')
         self.browser.find_element_by_id("page1Anchor").click()
         self.assertIn('Question 1', self.browser.title, 'Wrong title')
+    
+    def testPage2NavBar(self):
+        self.browser.get('http://localhost:8000/page1.html')
+        self.browser.find_element_by_id("page2Anchor").click()
+        self.assertIn('Question 2', self.browser.title, 'Wrong title')
 
     def testHomeFooter(self):
         self.browser.get('http://localhost:8000')
@@ -43,6 +48,12 @@ class FunctionalTest(unittest.TestCase):
         self.browser.get('http://localhost:8000/page1.html')
         footer = self.browser.find_element_by_id("footerText")
         self.assertIn('Page By Julian Jones', footer.text, 'Text not found')
+
+    def testPage2Footer(self):
+        self.browser.get('http://localhost:8000/page2.html')
+        footer = self.browser.find_element_by_id("footerText")
+        self.assertIn('Page By Julian Jones', footer.text, 'Text not found')
+
 
     def testCssLoads(self):
         resp = requests.head('http://localhost:8000/static/Darkly.css')
