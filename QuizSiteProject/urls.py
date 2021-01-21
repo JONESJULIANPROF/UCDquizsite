@@ -16,12 +16,15 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from UCDquizApp import views
+from django.contrib import admin
+from django.conf.urls import include # new
 urlpatterns = [
     
     url(r'^$', views.home_page, name='home'),
     url(r'^home.html$', views.home_page, name='home'),
     url(r'^page1.html$', views.page1_page, name='page1'),
     url(r'^page2.html$', views.page2_page, name='page2'),
+    url('accounts/', include('django.contrib.auth.urls')),
    # url(r'^$', views.home_page, name='home')
     
 ]
